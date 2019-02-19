@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>My First Accelerometer Test</title>
+  <meta name="description" content="My First Reading Sensor page in HTML5">
+  <meta name="keyword" content="HTML,CSS,JavaScript">
+
+  <link rel="stylesheet" href=style.css>
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <section> 
+  <h1>IMU from RealSense 435i or other Sensors</h1>
+  </section>
+  <div id="game" class="game">
+    <div id="game_text" class="shakeToStart" style="display:none;">
+    </div>
+  </div>
+  <script>main()</script>
+
+  <h2>Accelerometer</h2>
+  <p> <strong id="accStatus"> OFF</strong> <br> </p>
+  <label class="switch">
+      <input id="startStopAcc" type="checkbox" onclick="startStopAcc();"/>
+      <span class="slider round"></span>
+  </label>
+
+  <table id="accelerometer"> 
+    <tr>
+      <th>x axis</th>
+      <th>y axis</th>
+      <th>z axis</th>
+    </tr>
+    <tr>
+      <td id="acc_x_val"> - </td>
+      <td id="acc_y_val"> - </td>
+      <td id="acc_z_val"> - </td>
+    </tr>
+  </table>
+
+  <h2>Gyroscope</h2>
+  <p> <strong id="gyroStatus"> OFF</strong> <br> </p>
+  <label class="switch">
+      <input id="startStopGyro" type="checkbox" onclick="startStopGyro();"/>
+      <span class="slider round"></span>
+  </label>
+
+  <table id="gyro"> 
+    <tr>
+      <th>x axis</th>
+      <th>y axis</th>
+      <th>z axis</th>
+    </tr>
+    <tr>
+      <td id="gyro_x_val"> - </td>
+      <td id="gyro_y_val"> - </td>
+      <td id="gyro_z_val"> - </td>
+    </tr>
+  </table>
+</body>
+</html>
