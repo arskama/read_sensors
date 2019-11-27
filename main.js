@@ -15,6 +15,9 @@ function main() {
 acl = new Accelerometer({frequency:250});
 gyro = new Gyroscope({frequency:60});
 
+acl.start();
+startAcc = true;
+
 acl.addEventListener('reading', e => {
     document.getElementById("acc_x_val").innerHTML = Math.round(acl.x*1000)/1000;
     document.getElementById("acc_y_val").innerHTML = Math.round(acl.y*1000)/1000;
