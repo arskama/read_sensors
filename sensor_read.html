@@ -19,7 +19,7 @@
   <div id="game" class="game">
     <div id="game_text" class="shakeToStart" style="display:none;">
     </div>
-  </div>
+ </div>
   <script>main()</script>
 
   <h2>Accelerometer</h2>
@@ -41,6 +41,28 @@
       <td id="acc_z_val"> - </td>
     </tr>
   </table>
+  <p id="acc_status"> </p>
+
+  <h2>Gravity</h2>
+  <p> <strong id="gravityStatus"> OFF</strong> <br> </p>
+  <label class="switch">
+      <input id="startStopGravity" type="checkbox" onclick="startStopGravity();"/>
+      <span class="slider round"></span>
+  </label>
+
+  <table id="gravity">
+    <tr>
+      <th>x axis</th>
+      <th>y axis</th>
+      <th>z axis</th>
+    </tr>
+    <tr>
+      <td id="gravity_x_val"> - </td>
+      <td id="gravity_y_val"> - </td>
+      <td id="gravity_z_val"> - </td>
+    </tr>
+  </table>
+  <p id="gravity_status"> </p>
 
   <h2>Gyroscope</h2>
   <p> <strong id="gyroStatus"> OFF</strong> <br> </p>
@@ -61,5 +83,6 @@
       <td id="gyro_z_val"> - </td>
     </tr>
   </table>
+  <p id="gyro_status"> </p>
 </body>
 </html>

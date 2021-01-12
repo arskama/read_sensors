@@ -1,27 +1,27 @@
-#accelerometer, #gyro {
+#accelerometer, #gyro, #gravity {
   table-layout: fixed;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 600px;
   margin-top: 10px;
-  margin-bottom: 70px;
+  margin-bottom: 10px;
 }
-#accelerometer td, #accelerometer th, #gyro td, #gyro th {
+#accelerometer td, #accelerometer th, #gyro td, #gyro th, #gravity th, #gravity td {
   border: 1px solid black;
   padding: 8px;
 }
-#accelerometer th, #gyro th {
+#accelerometer th, #gyro th, #gravity th{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: darkgrey;
   color: white;
 }
-#accelerometer tr:nth-child(), #gyro tr:nth-child() {
+#accelerometer tr:nth-child(), #gyro tr:nth-child() , #gravity tr:nth-child(){
   background-color: lightgray;
   color: black;
 }
-#accelerometer tr:hover, #gyro tr:hover{
+#accelerometer tr:hover, #gyro tr:hover, #gravity tr:hover{
   background-color: grey;
 }
 
