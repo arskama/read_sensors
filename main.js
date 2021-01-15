@@ -2,9 +2,11 @@ var text = null;
 var startAcc = false;
 var startGravi = false;
 var startGyro = false;
+var startLinAcc = false;
 
 let acl = new Accelerometer({frequency:250});
-let gravi = new GravitySensor({frequency:60});
+let lin_acl = new LinearAccelerationSensor({frequency:250});
+let gravi = new GravitySensor({frequency:250});
 let gyro = new Gyroscope({frequency:60});
 
 function setText(text) {
@@ -29,6 +31,12 @@ function main() {
     document.getElementById("acc_z_val").innerHTML = Math.round(acl.z*1000)/1000;
   });
 
+    lin_acl.addEventListener('reading', e => {
+    document.getElementById("lin_acc_x_val").innerHTML = Math.round(lin_acl.x*1000)/1000;
+    document.getElementById("lin_acc_y_val").innerHTML = Math.round(lin_acl.y*1000)/1000;
+    document.getElementById("lin_acc_z_val").innerHTML = Math.round(lin_acl.z*1000)/1000;
+  });
+
   gravi.addEventListener('reading', e => {
     document.getElementById("gravity_x_val").innerHTML = Math.round(gravi.x*1000)/1000;
     document.getElementById("gravity_y_val").innerHTML = Math.round(gravi.y*1000)/1000;
@@ -44,6 +52,10 @@ function main() {
   acl.onerror = event => {
     console.log(event.error.name, event.error.message);
     document.getElementById("acc_status").innerHTML = event.error.message;
+  }
+  lin_acl.onerror = event => {
+    console.log(event.error.name, event.error.message);
+    document.getElementById("lin_acc_status").innerHTML = event.error.message;
   }
   gravi.onerror = event => {
     console.log(event.error.name, event.error.message);
@@ -68,6 +80,21 @@ function startStopAcc() {
         document.getElementById("acc_y_val").innerHTML = "-";
         document.getElementById("acc_z_val").innerHTML = "-";
         document.getElementById("acc_status").innerHTML = "";
+    }
+}
+function startStopLinAcc() {
+    if (startLinAcc == false) {
+        document.getElementById("linAccStatus").innerHTML = "ON";
+        startLinAcc = true;
+        lin_acl.start();
+    } else {
+        document.getElementById("linAccStatus").innerHTML = "OFF";
+        startLinAcc = false;
+        lin_acl.stop();
+        document.getElementById("lin_acc_x_val").innerHTML = "-";
+        document.getElementById("lin_acc_y_val").innerHTML = "-";
+        document.getElementById("lin_acc_z_val").innerHTML = "-";
+        document.getElementById("lin_acc_status").innerHTML = "";
     }
 }
 function startStopGravity() {

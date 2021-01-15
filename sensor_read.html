@@ -43,6 +43,28 @@
   </table>
   <p id="acc_status"> </p>
 
+  <h2>Linear Accelerometer</h2>
+  <p> <strong id="linAccStatus"> OFF</strong> <br> </p>
+  <label class="switch">
+      <input id="startStopLinAcc" type="checkbox" onclick="startStopLinAcc();"/>
+      <span class="slider round"></span>
+  </label>
+
+  <table id="linear_accelerometer"> 
+    <tr>
+      <th>x axis</th>
+      <th>y axis</th>
+      <th>z axis</th>
+    </tr>
+    <tr>
+      <td id="lin_acc_x_val"> - </td>
+      <td id="lin_acc_y_val"> - </td>
+      <td id="lin_acc_z_val"> - </td>
+    </tr>
+  </table>
+  <p id="lin_acc_status"> </p>
+
+
   <h2>Gravity</h2>
   <p> <strong id="gravityStatus"> OFF</strong> <br> </p>
   <label class="switch">

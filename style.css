@@ -1,4 +1,4 @@
-#accelerometer, #gyro, #gravity {
+#accelerometer, #gyro, #gravity, #linear_accelerometer {
   table-layout: fixed;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -6,22 +6,22 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-#accelerometer td, #accelerometer th, #gyro td, #gyro th, #gravity th, #gravity td {
+#accelerometer td, #accelerometer th, #gyro td, #gyro th, #gravity th, #gravity td, #linear_accelerometer, th, #linear_accelerometer td{
   border: 1px solid black;
   padding: 8px;
 }
-#accelerometer th, #gyro th, #gravity th{
+#accelerometer th, #gyro th, #gravity th, #linear_accelerometer th{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: darkgrey;
   color: white;
 }
-#accelerometer tr:nth-child(), #gyro tr:nth-child() , #gravity tr:nth-child(){
+#accelerometer tr:nth-child(), #gyro tr:nth-child() , #gravity tr:nth-child(), #linear_accelerometer tr:nth-child(){
   background-color: lightgray;
   color: black;
 }
-#accelerometer tr:hover, #gyro tr:hover, #gravity tr:hover{
+#accelerometer tr:hover, #gyro tr:hover, #gravity tr:hover, #linear_accelerometer tr:hover{
   background-color: grey;
 }
 
