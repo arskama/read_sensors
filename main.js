@@ -4,10 +4,29 @@ var startGravi = false;
 var startGyro = false;
 var startLinAcc = false;
 
-let acl = new Accelerometer({frequency:250});
-let lin_acl = new LinearAccelerationSensor({frequency:250});
-let gravi = new GravitySensor({frequency:250});
-let gyro = new Gyroscope({frequency:60});
+console.log("acl ->" + typeof(Accelerometer));
+
+let acl = null;
+let lin_acl = null;
+let gravi = null;
+let gyro = null;
+
+if (typeof(Accelerometer) === 'function')
+    acl = new Accelerometer({frequency:250});
+
+if (typeof(LinearAccelerationSensor) === 'function')
+    lin_acl = new LinearAccelerationSensor({frequency:250});
+
+if (typeof(GravitySensor) === 'function')
+    gravi = new GravitySensor({frequency:250});
+
+if (typeof(Gyroscope) === 'function')
+    gyro = new Gyroscope({frequency:60});
+
+console.log("acl" + acl);
+console.log("linacl" + lin_acl);
+console.log("gravi" + gravi);
+console.log("gyro" + gyro);
 
 function setText(text) {
     game_text.innerText = text;
@@ -30,18 +49,33 @@ function main() {
     document.getElementById("acc_y_val").innerHTML = Math.round(acl.y*1000)/1000;
     document.getElementById("acc_z_val").innerHTML = Math.round(acl.z*1000)/1000;
   });
-
+  acl.onerror = event => {
+    console.log(event.error.name, event.error.message);
+    document.getElementById("acc_status").innerHTML = event.error.message;
+  }
     lin_acl.addEventListener('reading', e => {
     document.getElementById("lin_acc_x_val").innerHTML = Math.round(lin_acl.x*1000)/1000;
     document.getElementById("lin_acc_y_val").innerHTML = Math.round(lin_acl.y*1000)/1000;
     document.getElementById("lin_acc_z_val").innerHTML = Math.round(lin_acl.z*1000)/1000;
   });
 
-  gravi.addEventListener('reading', e => {
-    document.getElementById("gravity_x_val").innerHTML = Math.round(gravi.x*1000)/1000;
-    document.getElementById("gravity_y_val").innerHTML = Math.round(gravi.y*1000)/1000;
-    document.getElementById("gravity_z_val").innerHTML = Math.round(gravi.z*1000)/1000;
-  });
+  lin_acl.onerror = event => {
+    console.log(event.error.name, event.error.message);
+    document.getElementById("lin_acc_status").innerHTML = event.error.message;
+  }
+
+  if (gravi) {
+    gravi.addEventListener('reading', e => {
+      document.getElementById("gravity_x_val").innerHTML = Math.round(gravi.x*1000)/1000;
+      document.getElementById("gravity_y_val").innerHTML = Math.round(gravi.y*1000)/1000;
+      document.getElementById("gravity_z_val").innerHTML = Math.round(gravi.z*1000)/1000;
+    });
+
+    gravi.onerror = event => {
+      console.log(event.error.name, event.error.message);
+      document.getElementById("gravity_status").innerHTML = event.error.message;
+    }
+  }
 
   gyro.addEventListener('reading', e => {
     document.getElementById("gyro_x_val").innerHTML = Math.round(gyro.x*1000)/1000;
@@ -49,24 +83,12 @@ function main() {
     document.getElementById("gyro_z_val").innerHTML = Math.round(gyro.z*1000)/1000;
   });
 
-  acl.onerror = event => {
-    console.log(event.error.name, event.error.message);
-    document.getElementById("acc_status").innerHTML = event.error.message;
-  }
-  lin_acl.onerror = event => {
-    console.log(event.error.name, event.error.message);
-    document.getElementById("lin_acc_status").innerHTML = event.error.message;
-  }
-  gravi.onerror = event => {
-    console.log(event.error.name, event.error.message);
-    document.getElementById("gravity_status").innerHTML = event.error.message;
-  }
-
   gyro.onerror = event => {
     console.log(event.error.name, event.error.message);
     document.getElementById("gyro_status").innerHTML = event.error.message;
   }
 }
+
 function startStopAcc() {
     if (startAcc == false) {
         document.getElementById("accStatus").innerHTML = "ON";
@@ -82,6 +104,7 @@ function startStopAcc() {
         document.getElementById("acc_status").innerHTML = "";
     }
 }
+
 function startStopLinAcc() {
     if (startLinAcc == false) {
         document.getElementById("linAccStatus").innerHTML = "ON";
@@ -97,21 +120,27 @@ function startStopLinAcc() {
         document.getElementById("lin_acc_status").innerHTML = "";
     }
 }
+
 function startStopGravity() {
+  if (gravi) {
     if (startGravi == false) {
-        document.getElementById("gravityStatus").innerHTML = "ON";
-        startGravi = true;
-        gravi.start();
+      document.getElementById("gravityStatus").innerHTML = "ON";
+      startGravi = true;
+      gravi.start();
     } else {
-        document.getElementById("gravityStatus").innerHTML = "OFF";
-        startGravi = false;
-        gravi.stop();
-        document.getElementById("gravity_x_val").innerHTML = "-";
-        document.getElementById("gravity_y_val").innerHTML = "-";
-        document.getElementById("gravity_z_val").innerHTML = "-";
-        document.getElementById("gravity_status").innerHTML = "";
+      document.getElementById("gravityStatus").innerHTML = "OFF";
+      startGravi = false;
+      gravi.stop();
+      document.getElementById("gravity_x_val").innerHTML = "-";
+      document.getElementById("gravity_y_val").innerHTML = "-";
+      document.getElementById("gravity_z_val").innerHTML = "-";
+      document.getElementById("gravity_status").innerHTML = "";
     }
+  } else {
+      document.getElementById("gravityStatus").innerHTML = "SENSOR NOT SUPPORTED";
+  }
 }
+
 function startStopGyro() {
     if (startGyro == false) {
         document.getElementById("gyroStatus").innerHTML = "ON";
@@ -124,6 +153,6 @@ function startStopGyro() {
         document.getElementById("gyro_x_val").innerHTML = "-";
         document.getElementById("gyro_y_val").innerHTML = "-";
         document.getElementById("gyro_z_val").innerHTML = "-";
-        document.getElementById("gyro_status").innerHTML = "";
+        document.getElementById("gyro_status").innerHTML = "yo baby";
     }
 }
