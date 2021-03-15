@@ -12,16 +12,16 @@ let gravi = null;
 let gyro = null;
 
 if (typeof(Accelerometer) === 'function')
-    acl = new Accelerometer({frequency:250});
+    acl = new Accelerometer({frequency:10});
 
 if (typeof(LinearAccelerationSensor) === 'function')
-    lin_acl = new LinearAccelerationSensor({frequency:250});
+    lin_acl = new LinearAccelerationSensor({frequency:10});
 
 if (typeof(GravitySensor) === 'function')
-    gravi = new GravitySensor({frequency:250});
+    gravi = new GravitySensor({frequency:10});
 
 if (typeof(Gyroscope) === 'function')
-    gyro = new Gyroscope({frequency:60});
+    gyro = new Gyroscope({frequency:10});
 
 console.log("acl" + acl);
 console.log("linacl" + lin_acl);
