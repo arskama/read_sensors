@@ -34,16 +34,8 @@ function setText(text) {
     game_text.style.display = "block";
 }
 function main() {
- game_text = document.getElementById("game_text");
+  game_text = document.getElementById("game_text");
  
-  //acl = new LinearAccelerationSensor({frequency:250});
-//  let acl = new Accelerometer({frequency:250});
-//  let gravi = new GravitySensor({frequency:60});
-//  let gyro = new Gyroscope({frequency:60});
-
-  //acl.start();
-  //startAcc = true;
-
   acl.addEventListener('reading', e => {
     document.getElementById("acc_x_val").innerHTML = Math.round(acl.x*1000)/1000;
     document.getElementById("acc_y_val").innerHTML = Math.round(acl.y*1000)/1000;
@@ -153,6 +145,6 @@ function startStopGyro() {
         document.getElementById("gyro_x_val").innerHTML = "-";
         document.getElementById("gyro_y_val").innerHTML = "-";
         document.getElementById("gyro_z_val").innerHTML = "-";
-        document.getElementById("gyro_status").innerHTML = "yo baby";
+        document.getElementById("gyro_status").innerHTML = "-";
     }
 }
